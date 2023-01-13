@@ -5,30 +5,6 @@ const register = require('../model/registration');
 const bcryptjs = require('bcryptjs')
 
 
-// regsisterationRouter.post('/', (req, res) => {
-//     const registration = {
-//         fristname: req.body.Ufristname,
-//         lastname: req.body.Ulastname,
-//         Email: req.body.email,
-//         phonenumber: req.body.Phonenumber,
-//         password: req.body.Password,
-//     }
-//     console.log(registration);
-//     register(registration).save().then((data) => {
-//         res.status(200).json({
-//             value: data,
-//             message: 'registertaion sucess',
-//             success: true,
-//             error: false
-//         })
-//     }).catch((error) => {
-//         res.status(400).json({
-//             error: error.message,
-//             message: "something wrong",
-//             success: false
-//         })
-//     })
-// })
 
 regsisterationRouter.post('/', async (req, res) => {
     try {
@@ -47,12 +23,13 @@ regsisterationRouter.post('/', async (req, res) => {
             })
         }
         const hasedpassword = await bcryptjs.hash(req.body.Password, 10)
-        const registration = {
+        var registration = {
             fristname: req.body.Ufristname,
             lastname: req.body.Ulastname,
             Email: req.body.email,
             phonenumber: req.body.Phonenumber,
             password: hasedpassword,
+            roll:1,
         }
         const result = await register(registration).save()
         if (result) {
@@ -83,7 +60,7 @@ regsisterationRouter.post('/', async (req, res) => {
 
 
 regsisterationRouter.get('/view_allusers', (req, res) => {
-  
+
     register.find().then((users) => {
         res.status(200).json({
             value: users,
@@ -108,7 +85,8 @@ regsisterationRouter.get('/view_singeluser/:id', (req, res) => {
             values: data,
             message: "get selected user",
             success: true,
-            error: false
+            error: false,
+            
         })
     }).catch((error) => {
         req.status(400).json({

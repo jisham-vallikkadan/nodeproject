@@ -8,6 +8,7 @@ const registration=new Schema({
     Email:{type:String,required:true},
     phonenumber:{type:Number},
     password:{type:String,required:true},
+    roll:{type:Number}
 })
 
 
