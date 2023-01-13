@@ -11,9 +11,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const regusrer=require('./src/routes/register')
+const loginuser=require('./src/routes/loginrouter')
 
 
 app.use('/register',regusrer)
+app.use('/login',loginuser)
+
 
 
 app.listen(3000)
