@@ -9,5 +9,7 @@ const registration=new Schema({
     phonenumber:{type:Number},
     password:{type:String,required:true},
 })
+
+
 var Registrationdata=mongoose.model('Register_tb',registration,)
 module.exports=Registrationdata;
