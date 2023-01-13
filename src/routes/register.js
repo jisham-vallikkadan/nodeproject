@@ -83,7 +83,7 @@ regsisterationRouter.post('/', async (req, res) => {
 
 
 regsisterationRouter.get('/view_allusers', (req, res) => {
-    console.log('jisham vallikkadan')
+  
     register.find().then((users) => {
         res.status(200).json({
             value: users,
